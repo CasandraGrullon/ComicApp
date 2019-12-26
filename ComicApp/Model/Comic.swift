@@ -12,24 +12,24 @@ struct Comic: Decodable {
     let results: [Results]
 }
 struct Results: Decodable {
-    let releaseDate: String
-    let endDate: String
     let deck: String?
     let image: Image
-    let issueNumber: String
+    let issueNumber: String?
     let name: String
-    let volume: Volume
+    let volume: Volume?
     let publisher: Publisher?
+    let numberOfIssues: Int?
+    let startYear: String?
     
     enum CodingKeys: String, CodingKey{
-        case releaseDate = "date_added"
-        case endDate = "date_last_updated"
         case deck
         case image
         case issueNumber = "issue_number"
         case name
         case volume
         case publisher
+        case numberOfIssues = "count_of_issues"
+        case startYear = "start_year"
     }
     
 }
@@ -43,7 +43,7 @@ struct Image: Decodable {
     }
 }
 struct Volume: Decodable {
-    let name: String
+    let name: String?
 }
 struct Publisher: Decodable {
     let name: String

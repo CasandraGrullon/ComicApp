@@ -21,6 +21,7 @@
 		C61D84BA23B5400000A414D8 /* ShowAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61D84B923B5400000A414D8 /* ShowAlert.swift */; };
 		C61D84BC23B5402900A414D8 /* ComicAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61D84BB23B5402900A414D8 /* ComicAPIClient.swift */; };
 		C61D84BF23B5409700A414D8 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61D84BE23B5409700A414D8 /* Secrets.swift */; };
+		C61D84C123B550C500A414D8 /* VolumeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61D84C023B550C500A414D8 /* VolumeCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +53,7 @@
 		C61D84B923B5400000A414D8 /* ShowAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowAlert.swift; sourceTree = "<group>"; };
 		C61D84BB23B5402900A414D8 /* ComicAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComicAPIClient.swift; sourceTree = "<group>"; };
 		C61D84BE23B5409700A414D8 /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
+		C61D84C023B550C500A414D8 /* VolumeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolumeCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +130,7 @@
 			isa = PBXGroup;
 			children = (
 				C61D849023B53CC000A414D8 /* ComicTableSearchVC.swift */,
+				C61D84C023B550C500A414D8 /* VolumeCell.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -259,6 +262,7 @@
 				C61D84AF23B53CD200A414D8 /* Comic.swift in Sources */,
 				C61D84B623B53FC100A414D8 /* AppError.swift in Sources */,
 				C61D84BA23B5400000A414D8 /* ShowAlert.swift in Sources */,
+				C61D84C123B550C500A414D8 /* VolumeCell.swift in Sources */,
 				C61D84B423B53F8E00A414D8 /* NetworkHelper.swift in Sources */,
 				C61D84B823B53FE500A414D8 /* ImageViewExt.swift in Sources */,
 				C61D848D23B53CC000A414D8 /* AppDelegate.swift in Sources */,

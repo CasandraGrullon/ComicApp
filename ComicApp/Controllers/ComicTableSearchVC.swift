@@ -10,11 +10,58 @@ import UIKit
 
 class ComicTableSearchVC: UIViewController {
 
+    @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var tableView: UITableView!
+    
+    var comics = [Results](){
+        didSet{
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
+    }
+    
+    var searchQuery = "Sailor Moon"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        loadData(for: searchQuery)
+        tableView.dataSource = self
+        tableView.delegate = self
     }
 
+    func loadData(for search: String) {
+        ComicAPIClient.getComicVolumes(for: search) { [weak self] (result) in
+            switch result {
+            case .failure(let appError):
+                DispatchQueue.main.async {
+                    self?.showAlert(title: "App Error", message: "\(appError)")
+                }
+            case .success(let comics):
+                self?.comics = comics
+            }
+        }
+    }
 
 }
 
+extension ComicTableSearchVC: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return comics.count
+    }
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "volumeCell", for: indexPath) as? VolumeCell else {
+            fatalError("cell issue")
+        }
+        let comic = comics[indexPath.row]
+        
+        cell.configureCell(for: comic)
+        return cell
+    }
+}
+
+extension ComicTableSearchVC: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 200
+    }
+}

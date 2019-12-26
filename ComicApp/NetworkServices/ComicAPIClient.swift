@@ -9,7 +9,7 @@
 import Foundation
 
 struct ComicAPIClient {
-    static func getComicVolumes(for search: String, completion: @escaping (Result<Results, AppError>) -> () ) {
+    static func getComicVolumes(for search: String, completion: @escaping (Result<[Results], AppError>) -> () ) {
         
         let searchQuery = search.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? ""
         
@@ -28,8 +28,9 @@ struct ComicAPIClient {
                 completion(.failure(.networkClientError(appError)))
             case .success(let data):
                 do {
-                    let comics = try JSONDecoder().decode(Results.self, from: data)
-                    completion(.success(comics))
+                    let comics = try JSONDecoder().decode(Comic.self, from: data)
+                    let results = comics.results
+                    completion(.success(results))
                 }catch{
                     completion(.failure(.decodingError(error)))
                 }
@@ -37,7 +38,7 @@ struct ComicAPIClient {
         }
     }
     
-    static func getIssues(for search: String, completion: @escaping (Result<Results, AppError>) -> ()) {
+    static func getIssues(for search: String, completion: @escaping (Result<[Results], AppError>) -> ()) {
         
         let searchQuery = search.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? ""
         let endpointURL = "https://comicvine.gamespot.com/api/search/?api_key=\(Secrets.apiKey)&format=json&sort=date_added:asc&resources=issue&query=\(searchQuery)"
@@ -54,8 +55,9 @@ struct ComicAPIClient {
                 completion(.failure(.networkClientError(appError)))
             case .success(let data):
                 do {
-                    let comics = try JSONDecoder().decode(Results.self, from: data)
-                    completion(.success(comics))
+                    let comics = try JSONDecoder().decode(Comic.self, from: data)
+                    let results = comics.results
+                    completion(.success(results))
                 }catch{
                     completion(.failure(.decodingError(error)))
                 }
