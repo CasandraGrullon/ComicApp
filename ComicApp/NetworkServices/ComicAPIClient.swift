@@ -11,7 +11,7 @@ import Foundation
 struct ComicAPIClient {
     static func getComicVolumes(for search: String, completion: @escaping (Result<[Results], AppError>) -> () ) {
         
-        let searchQuery = search.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? ""
+        let searchQuery = search.lowercased().addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? ""
         
         let endpointURL = "https://comicvine.gamespot.com/api/search/?api_key=\(Secrets.apiKey)&format=json&sort=date_added:asc&resources=volume&query=\(searchQuery)"
         
@@ -40,7 +40,7 @@ struct ComicAPIClient {
     
     static func getIssues(for search: String, completion: @escaping (Result<[Results], AppError>) -> ()) {
         
-        let searchQuery = search.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? ""
+        let searchQuery = search.lowercased().addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? ""
         let endpointURL = "https://comicvine.gamespot.com/api/search/?api_key=\(Secrets.apiKey)&format=json&sort=date_added:asc&resources=issue&query=\(searchQuery)"
         guard let url = URL(string: endpointURL) else {
             completion(.failure(.badURL(endpointURL)))

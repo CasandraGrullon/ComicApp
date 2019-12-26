@@ -19,7 +19,7 @@ class VolumeCell: UITableViewCell {
     
     func configureCell(for comic: Results){
         nameLabel.text = comic.name
-        numberOfIssues.text = comic.numberOfIssues?.description
+        numberOfIssues.text = "total issues: \(comic.numberOfIssues ?? 0)"
         startYearLabel.text = comic.startYear
         
         comicImage.getImage(with: comic.image.thumbImage) { [weak self] (result) in
