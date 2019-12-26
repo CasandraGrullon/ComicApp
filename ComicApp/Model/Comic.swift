@@ -19,6 +19,7 @@ struct Results: Decodable {
     let issueNumber: String
     let name: String
     let volume: Volume
+    let publisher: Publisher?
     
     enum CodingKeys: String, CodingKey{
         case releaseDate = "date_added"
@@ -28,7 +29,9 @@ struct Results: Decodable {
         case issueNumber = "issue_number"
         case name
         case volume
+        case publisher
     }
+    
 }
 struct Image: Decodable {
     let thumbImage: String
@@ -40,5 +43,8 @@ struct Image: Decodable {
     }
 }
 struct Volume: Decodable {
+    let name: String
+}
+struct Publisher: Decodable {
     let name: String
 }
